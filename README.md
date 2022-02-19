@@ -1,7 +1,7 @@
 # Codygoose-NoSQL-API
 Using MongoDB and mongoose, this API is a back-end template to help integrate a database to a social media platform. There is no front-end to help visualize the routes at work; however, using Insomnia, a video has been created to showcase this APIs' functionality.
 
-(video link)
+https://drive.google.com/file/d/1bJFLZiefUOpeRasyWXamoizxifFnLQ4H/view
 
 To use: Simply download this repository, run "npm install" in your terminal, then run the command "npm start" to start the server. You may test the routes yourself using Insomnia or Postman at localhost 3001.
 
