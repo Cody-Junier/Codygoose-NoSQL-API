@@ -1,3 +1,4 @@
+const req = require('express/lib/request');
 const { Thought, Users } = require('../models');
 
 const thoughtController = {
@@ -37,9 +38,10 @@ const thoughtController = {
 
   // add reaction to thought
   addReaction({ params, body }, res) {
-      console.log(params)
+    console.log('Hello')
+    console.log('params', params)
     Thought.findOneAndUpdate(
-      { _id: params.id },
+      { thoughtId: params.thoughtId },
       { $push: { reactions: body } },
       { new: true, runValidators: true }
     )
@@ -55,7 +57,7 @@ const thoughtController = {
 
   // remove thought
   removeThought({ params }, res) {
-      console.log(params)
+      console.log('params', params)
     Thought.findOneAndDelete({ id: params.id })
       .then(deletedthought => {
         if (!deletedthought) {
@@ -63,7 +65,7 @@ const thoughtController = {
         }
         console.log(deletedthought)
         return Users.findOneAndUpdate(
-          {username: deletedthought.username},  
+          { thoughts: params.id},  
           { $pull: { thoughts: params.id } },
           { new: true }
         );
@@ -79,8 +81,9 @@ const thoughtController = {
   },
   // remove Reaction
   removeReaction({ params }, res) {
+    console.log('params', params)
     Thought.findOneAndUpdate(
-      { _id: params.thoughtId },
+      { thoughtId: params.thoughtId },
       { $pull: { reactions: { reactionId: params.reactionId } } },
       { new: true }
     )
